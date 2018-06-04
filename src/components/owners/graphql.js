@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import {VISIT_FRAGMENTS, VISIT_CONNECTION_FRAGMENTS} from "../visits/graphql";
+import {VISIT_CONNECTION_FRAGMENTS} from "../visits/graphql";
 
 export const OWNER_FRAGMENTS = {
   owner: gql`
@@ -29,7 +29,7 @@ export const OWNER_FRAGMENTS = {
              ...VisitConnection
           }
       }
-${VISIT_CONNECTION_FRAGMENTS.visitConnection}
+      ${VISIT_CONNECTION_FRAGMENTS.visitConnection}
   `,
 };
 

@@ -136,7 +136,7 @@ const EditPet = props => (
             <Query query={GET_PET_TYPES}>
               {
                 ({data: {pettypes}, loading: get_pet_types_loading}) => (
-                    <Query query={GET_PET} variables={{id: props.match.params.petid}}>
+                    <Query query={GET_PET} variables={{id: props.match.params.petId}}>
                       {
                         ({data: {pet}, loading: get_pet_loading}) => {
                           if (get_owner_loading || get_pet_types_loading || get_pet_loading) return (<p>Loading</p>);

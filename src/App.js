@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import {Icon, Menu} from 'antd';
-import {Link, Route, Switch} from "react-router-dom";
+import {Link, Redirect, Route, Switch} from "react-router-dom";
 import Home from "./components/home/Index"
-import Specialties from "./components/specialties/Index"
+import {Specialties} from "./components/specialties"
 import {AddOwner, EditOwner, Owner, Owners} from "./components/owners"
 import {Veterinarians} from "./components/veterinarians"
 import {AddPet, EditPet} from "./components/pets";
@@ -56,13 +56,14 @@ class App extends React.Component {
               <Route path={"/owners/add"} component={AddOwner}/>
               <Route path={"/owners/:id/edit"} component={EditOwner}/>
               <Route path={"/owners/:id/pets/new"} component={AddPet}/>
-              <Route path={"/owners/:id/pets/:petid/edit"} component={EditPet}/>
+              <Route path={"/owners/:id/pets/:petId/edit"} component={EditPet}/>
               <Route path={"/owners/:id/pets/:petId/visits/new"} component={AddVisit}/>
               <Route path={"/owners/:id"} component={Owner}/>
               <Route path={"/owners"} component={Owners}/>
               <Route path={"/veterinarians"} component={Veterinarians}/>
               <Route path={"/specialties"} component={Specialties}/>
               <Route path={"/"} component={Home}/>
+              <Redirect to={"/"}/>
             </Switch>
           </div>
         </div>
