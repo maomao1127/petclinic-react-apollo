@@ -38,7 +38,7 @@ export const UPDATE_PET = gql`
             }
         }
     }
-${OWNER_FRAGMENTS.pet}
+    ${OWNER_FRAGMENTS.pet}
 `;
 
 export const GET_PETS_OF_OWNER = gql`
