@@ -14,7 +14,7 @@ class AddVisitForm extends Component {
       if (!err) {
         const values = {
           ...fieldsValue,
-          'date': fieldsValue['date'].format('YYYY-MM-DD'),
+          'date': fieldsValue['date'].format('YYYY/MM/DD'),
         };
         console.log('Received values of form: ', values);
         addVisit({variables: {...values, petId: this.props.petId}});

@@ -15,7 +15,7 @@ class AddPetForm extends Component {
       if (!err) {
         const values = {
           ...fieldsValue,
-          'birthDate': fieldsValue['birthDate'].format('YYYY-MM-DD'),
+          'birthDate': fieldsValue['birthDate'].format('YYYY/MM/DD'),
         };
         console.log('Received values of form: ', values);
         addPet({variables: {...values, ownerId: this.props.owner.id}});
