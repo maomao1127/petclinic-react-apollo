@@ -1,0 +1,14 @@
+{
+  "schema": {
+    "request": {
+      "url": "http://localhost:8090/graphql/schema.json",
+      "method": "GET",
+      "postIntrospectionQuery": false,
+      "options": {
+        "headers": {
+          "user-agent": "JS GraphQL"
+        }
+      }
+    }
+  }
+}

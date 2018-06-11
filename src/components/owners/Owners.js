@@ -77,13 +77,18 @@ class Owners extends React.Component {
     return (
         <div style={{margin: "0 10%"}}>
           <Query query={GET_OWNERS}>
-            {({data: {owners}, loading}) => (
-                <div>
-                  {!loading && <h3>{owners.length} Owners found</h3>}
-                  <Table dataSource={getDataSource(owners)} columns={this.columns} loading={loading}
-                         rowKey={"id"}/>
-                </div>
-            )}
+            {
+              ({data, error, loading}) => {
+                if (error) return (<p>出错啦!{error.message}</p>);
+                return (
+                    <div>
+                      {!loading && <h3>{data.owners.length} Owners found</h3>}
+                      <Table dataSource={getDataSource(data.owners)} columns={this.columns} loading={loading}
+                             rowKey={"id"}/>
+                    </div>
+                )
+              }
+            }
           </Query>
           <Button type="primary" onClick={() => this.props.history.push("/owners/add")}>Add Owner</Button>
         </div>
