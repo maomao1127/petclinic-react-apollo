@@ -10,7 +10,7 @@ export const SPECIALTY_FRAGMENTS = {
 };
 
 export const GET_SPECS = gql`
-    {
+    query specialties{
         specialties{
             ...Specialty
         }

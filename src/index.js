@@ -10,6 +10,8 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {InMemoryCache} from "apollo-cache-inmemory"
 import {setContext} from 'apollo-link-context';
 import {BatchHttpLink} from "apollo-link-batch-http"
+import {ApolloLink} from 'apollo-link'
+import {onError} from 'apollo-link-error';
 
 // const Link = createHttpLink({
 //   uri: 'http://localhost:8090/graphql',
@@ -43,7 +45,19 @@ const cache = new InMemoryCache({
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(link),
+  // link: authLink.concat(link),
+  link: ApolloLink.from([
+    onError(({graphQLErrors, networkError}) => {
+      if (graphQLErrors)
+        graphQLErrors.map(({message, locations, path, code}) =>
+            console.log(
+                `[GraphQL error]: Message: ${message}, code: ${code}`,
+            ),
+        );
+      if (networkError) console.log(`[Network error]: ${networkError}`);
+    }),
+    authLink.concat(link)
+  ]),
   cache: cache
 });
 

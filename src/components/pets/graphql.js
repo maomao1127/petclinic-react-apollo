@@ -2,7 +2,7 @@ import gql from "graphql-tag"
 import {OWNER_FRAGMENTS} from "../owners/graphql";
 
 export const GET_PET_TYPES = gql`
-    {
+    query pettypes{
         pettypes{
             id
             name
