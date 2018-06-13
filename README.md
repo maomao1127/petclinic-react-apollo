@@ -3,4 +3,8 @@
 
 工程由create-react-app创建，主题使用antd
 
-用到的后台数据由https://github.com/spring-petclinic/spring-petclinic-graphql的backend部分提供
+后台部分参考
+
+[hello-graphql]: https://github.com/maomao1127/hello-graphql	"hello-graphql"
+
+
