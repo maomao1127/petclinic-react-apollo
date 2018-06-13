@@ -3,8 +3,6 @@
 
 工程由create-react-app创建，主题使用antd
 
-后台部分参考
-
-[hello-graphql]: https://github.com/maomao1127/hello-graphql	"hello-graphql"
+后台部分参考[hello-graphql]: https://github.com/maomao1127/hello-graphql	"hello-graphql"
 
 
