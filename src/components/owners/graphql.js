@@ -26,7 +26,7 @@ export const OWNER_FRAGMENTS = {
               name
           }
           visits{
-             ...VisitConnection
+              ...VisitConnection
           }
       }
       ${VISIT_CONNECTION_FRAGMENTS.visitConnection}
@@ -34,7 +34,7 @@ export const OWNER_FRAGMENTS = {
 };
 
 export const GET_OWNERS = gql`
-    {
+    query owners{
         owners{
             ...Owner
             pets{

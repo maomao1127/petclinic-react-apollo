@@ -24,7 +24,7 @@ export const VISIT_CONNECTION_FRAGMENTS ={
 };
 
 export const ADD_VISIT = gql`
-    mutation addVisit($petId:Int!, $description:String!, $date:Date){
+    mutation addVisit($petId:Int!, $description:String!, $date:Date!){
         addVisit(input:{petId:$petId, description:$description, date:$date}){
             visit{
                 ...Visit

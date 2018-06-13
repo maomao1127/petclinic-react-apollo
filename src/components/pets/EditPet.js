@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import {Button, DatePicker, Form, Input, Select} from "antd"
-import {GET_PET, GET_PET_TYPES, UPDATE_PET} from "./graphql";
+import {GET_PET_EDIT, UPDATE_PET} from "./graphql";
 import {Mutation, Query} from "react-apollo"
 import {GET_OWNER} from "../owners/graphql";
 import moment from 'moment';
@@ -16,7 +16,7 @@ class EditPetForm extends Component {
       if (!err) {
         const values = {
           ...fieldsValue,
-          'birthDate': fieldsValue['birthDate'].format('YYYY-MM-DD'),
+          'birthDate': fieldsValue['birthDate'].format('YYYY/MM/DD'),
         };
         console.log('Received values of form: ', values);
         updatePet({variables: {...values, petId: this.props.pet.id}});
@@ -122,7 +122,7 @@ const EditPetFormHoc = Form.create({
     if (pet) {
       const result = {};
       result["name"] = Form.createFormField({value: pet.name});
-      result["birthDate"] = Form.createFormField({value: moment(pet.birthDate, "YYYY-MM-DD")});
+      result["birthDate"] = Form.createFormField({value: moment(pet.birthDate, "YYYY/MM/DD")});
       result["typeId"] = Form.createFormField({value: pet.type.id});
       return result;
     }
@@ -133,20 +133,14 @@ const EditPet = props => (
     <Query query={GET_OWNER} variables={{id: props.match.params.id}}>
       {
         ({data: {owner}, loading: get_owner_loading}) => (
-            <Query query={GET_PET_TYPES}>
+            <Query query={GET_PET_EDIT} variables={{id: props.match.params.petId}}>
               {
-                ({data: {pettypes}, loading: get_pet_types_loading}) => (
-                    <Query query={GET_PET} variables={{id: props.match.params.petId}}>
-                      {
-                        ({data: {pet}, loading: get_pet_loading}) => {
-                          if (get_owner_loading || get_pet_types_loading || get_pet_loading) return (<p>Loading</p>);
-                          return (
-                              <EditPetFormHoc owner={owner} pettypes={pettypes} pet={pet} history={props.history}/>
-                          )
-                        }
-                      }
-                    </Query>
-                )
+                ({data: {pettypes, pet}, loading: get_pet_edit_loading}) => {
+                  if (get_owner_loading || get_pet_edit_loading) return (<p>Loading</p>);
+                  return (
+                      <EditPetFormHoc owner={owner} pettypes={pettypes} pet={pet} history={props.history}/>
+                  )
+                }
               }
             </Query>
         )
